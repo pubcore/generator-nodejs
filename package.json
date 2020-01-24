@@ -1,0 +1,33 @@
+{
+  "name": "@pubcore/generator-nodejs",
+  "version": "1.0.0",
+  "description": "generator to create a package scaffold for nodejs ECMAScript",
+  "files": [
+    "app"
+  ],
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pubcore/generator-nodejs.git"
+  },
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "pubcore",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.15.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-mocha": "^6.2.2",
+    "mocha": "^7.0.0",
+    "yeoman-test": "^2.1.0"
+  },
+  "dependencies": {
+    "update-notifier": "^4.0.0",
+    "yeoman-generator": "^4.4.0"
+  }
+}
