@@ -1,4 +1,4 @@
-## Commandline tool to scaffolding new packages
+## Commandline tool to create node-js package scaffold
 
 ### Prerequisites
 * latest version of nodejs
