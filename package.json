@@ -1,6 +1,6 @@
 {
   "name": "@pubcore/generator-nodejs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "generator to create a package scaffold for nodejs ECMAScript",
   "files": [
     "app"
