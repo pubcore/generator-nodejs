@@ -2,6 +2,7 @@
   "name": "@pubcore/generator-nodejs",
   "version": "1.0.5",
   "description": "generator to create a package scaffold for nodejs ECMAScript",
+  "type": "commonjs",
   "files": [
     "app"
   ],
