@@ -1,6 +1,7 @@
 {
   "name": "<%= name %>",
   "description": "<%= description %>",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "<%= repository %>"

@@ -1,27 +1,34 @@
+'use strict'
 var Generator = require('yeoman-generator'),
-  updateNotifier = require('update-notifier'),
-  pkg = require('../package.json'),
-  {basename, resolve} = require('path')
-
-updateNotifier({pkg}).notify()
+  {basename, resolve} = require('path'),
+  {readdirSync} = require('fs')
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts)
   }
   initializing(){
-    this.scope = basename(resolve(process.cwd(), '..'))
+    var localName = this.appname.replace(/\s+/g, '-')
+    if(readdirSync(this.destinationRoot()).length){
+      this.log.error('working directory is not empty, beware hidden files (dot-files)')
+      process.exit(1)
+    }
+    this.initial = {
+      scope: basename(resolve(process.cwd(), '..')),
+      localName
+    }
   }
   async prompting() {
+    var {scope, localName} = this.initial
     this.answers = await this.prompt([{
-      type:'input', name:'name', message : 'Your project name',
-      default : () => `@${this.scope}/${this.appname.replace(/\s+/g, '-')}`
+      type:'input', name:'name', default : () => `@${scope}/${localName}`,
+      message : 'Your project name',
     },{
       type:'input', name:'description', message: 'Package description',
     },{
       type:'input', name:'license', default: 'MIT', message: 'License',
     },{
-      type:'input', name:'author', default: () => this.scope, message: 'Author',
+      type:'input', name:'author', default: () => scope, message: 'Author',
     },{
       type:'input', name:'repository', message: 'Repository uri',
     }])
@@ -52,8 +59,8 @@ module.exports = class extends Generator {
   }
   install(){
     this.log('Install packages ...')
-    this.npmInstall([
-      'eslint', 'mocha', 'nyc', 'eslint-plugin-mocha'
-    ], {'save-dev': true })
+    this.spawnCommandSync('npm', ['i', '--save-dev', 'eslint', 'mocha', 'nyc'])
+    //this.spawnCommandSync('npm', ['i', ''])
+    this.spawnCommandSync('npx', ['eslint', '--init'])
   }
 }
