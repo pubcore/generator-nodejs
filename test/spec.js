@@ -12,5 +12,5 @@ describe('my generator', () => {
       }).then(dir => {
         ok(fs.existsSync(`${dir}`))
       })
-  )
+  ).timeout(60000)
 })
